@@ -1,0 +1,19 @@
+GESTIONE COMPAGNIA AEREA.
+
+Si vuole creale un programma che ci permetta di poter gestire tutte le caratteristiche di una compagnia aerea:
+Lista dei voli mondiali:{orari di partenza e arrivo, data di partenza e di arrivo, 
+ numero prenotazioni[posto a sedere, tipo classe(economy,standard, business),
+ 
+
+Gestione Aereo:{si vuole sapere quanti e quali clienti sono a bordo di un'aereo, 
+tipologia biglietto per classe(economy,standard, business)}.
+
+Per ogni cliente si vuole conoscere la sua cronologia dei viaggi.
+
+
+Plus:
+Ogni 5 voli la percentuale di sconto applicata è del 10% (cumulativo)
+scali per volo:si/no(luogo, arrivo, partenza, numero e luogo scali)
+numero bagagli(stiva, a mano, o entrambi)}.
+-->PREZZO variabile in base alla capacità attuale dell'aereo (più è pieno e più costa il biglietto)
+Gestione Aereoporto:{numero aerei disponibili}
