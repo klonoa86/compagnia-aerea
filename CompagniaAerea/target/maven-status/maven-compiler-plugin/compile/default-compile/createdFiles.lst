@@ -1,0 +1,8 @@
+it\begear\CompagniaAerea\Model\Volo.class
+it\begear\CompagniaAerea\Model\Cliente.class
+it\begear\CompagniaAerea\Model\Prenotazione.class
+it\begear\CompagniaAerea\Util\Scan.class
+it\begear\CompagniaAerea\Main\Main.class
+it\begear\CompagniaAerea\Model\Aereo.class
+it\begear\CompagniaAerea\Util\DAO.class
+it\begear\CompagniaAerea\Util\DAOImpl.class
