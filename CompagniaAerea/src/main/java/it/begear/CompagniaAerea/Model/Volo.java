@@ -1,10 +1,15 @@
 package it.begear.CompagniaAerea.Model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,6 +38,14 @@ public class Volo {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_aereo")
 	private Aereo aereo;
+	
+//	@OneToMany (mappedBy = "volo", fetch= FetchType.EAGER)
+//	private List<Prenotazione> listaPrenotazioniClienti;
+	
+//	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+//	@JoinColumn(name = "username")
+//	private Cliente cliente;
+	
 
 	public Volo() {
 	}
@@ -93,12 +106,18 @@ public class Volo {
 		this.aereo = aereo;
 	}
 
-	
+//	public List<Prenotazione> getListaPrenotazioniClienti() {
+//		return listaPrenotazioniClienti;
+//	}
+//
+//	public void setListaPrenotazioniClienti(List<Prenotazione> listaPrenotazioniClienti) {
+//		this.listaPrenotazioniClienti = listaPrenotazioniClienti;
+//	}
 
 	@Override
 	public String toString() {
-		return "Volo [idVolo=" + idVolo + ", dataArrivo=" + dataArrivo + ", dataPartenza=" + dataPartenza
-				+ ", luogoArrivo=" + luogoArrivo + ", luogoPartenza=" + luogoPartenza + "]";
+		return "L'id del volo è: " + idVolo + " - Data e ora di arrivo: " + dataArrivo + " - Data e ora di partenza: " + dataPartenza
+				+ " - Luogo di partenza: " + luogoPartenza +  " - Luogo di arrivo: " + luogoArrivo;
 	}
 
 }
