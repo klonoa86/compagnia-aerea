@@ -12,6 +12,6 @@ public interface DAO {
 
 	<D> void delete(D d);
 
-	<D> D LoadLazyRelations(Class<D> d, Serializable g);
+	
 
 }
