@@ -1,20 +1,36 @@
 package it.begear.CompagniaAerea.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "cliente")
 public class Cliente {
-	private String nome;
-	private String cognome;
-	private String cf;
-	private String username;
 
+	@Column(name = "nome", nullable = false)
+	private String nome;
+	
+	@Column(name = "cognome", nullable = false)
+	private String cognome;
+	
+	@Column(name = "cf", nullable = false)
+	private String cf;
+	
+	@Id
+	@Column(name = "username")
+	private String username;
+	
+	
 	
 	public Cliente() {}
 	
 	public Cliente(String nome, String cognome, String cf, String username) {
-		this.nome=nome;
-		this.cognome=cognome;
-		this.cf=cf;
-		this.username=username;
+		this.nome= nome;
+		this.cognome = cognome;
+		this.cf = cf;
+		this.username = username;
 	}
 
 	public String getNome() {
@@ -55,5 +71,4 @@ public class Cliente {
 	}
 	
 	
-
 }
