@@ -1,12 +1,13 @@
 package it.begear.CompagniaAerea.Model;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "aereo")
@@ -14,7 +15,7 @@ public class Aereo {
 
 	@Id
 	@Column(name = "id_aereo")
-	private int idAereo;
+	private String idAereo;
 
 	@Column(name = "compagnia_aerea", nullable = false)
 	private String compagniaAerea;
@@ -27,11 +28,14 @@ public class Aereo {
 
 	@Column(name = "n_posti_business", nullable = true)
 	private int postiInBusiness;
+	
+	@OneToOne(mappedBy="aereo", cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private Volo volo;
 
 	public Aereo() {
 	}
 
-	public Aereo(int idAereo, String compagniaAerea, int postiInEconomy, int postiInStandard, int postiInBusiness) {
+	public Aereo(String idAereo, String compagniaAerea, int postiInEconomy, int postiInStandard, int postiInBusiness) {
 
 		this.idAereo = idAereo;
 		this.compagniaAerea = compagniaAerea;
@@ -41,11 +45,11 @@ public class Aereo {
 
 	}
 
-	public int getIdAereo() {
+	public String getIdAereo() {
 		return idAereo;
 	}
 
-	public void setIdAereo(int idAereo) {
+	public void setIdAereo(String idAereo) {
 		this.idAereo = idAereo;
 	}
 
@@ -79,6 +83,13 @@ public class Aereo {
 
 	public void setPostiInBusiness(int postiInBusiness) {
 		this.postiInBusiness = postiInBusiness;
+	}
+	public Volo getVolo() {
+		return volo;
+	}
+
+	public void setVolo(Volo volo) {
+		this.volo = volo;
 	}
 
 	@Override
