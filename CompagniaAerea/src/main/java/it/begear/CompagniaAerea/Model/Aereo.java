@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "aereo")
 public class Aereo {
@@ -28,8 +27,9 @@ public class Aereo {
 
 	@Column(name = "n_posti_business", nullable = true)
 	private int postiInBusiness;
-	
-	@OneToOne(mappedBy="aereo", cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+
+	@OneToOne(mappedBy = "aereo", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
 	private Volo volo;
 
 	public Aereo() {
@@ -84,6 +84,7 @@ public class Aereo {
 	public void setPostiInBusiness(int postiInBusiness) {
 		this.postiInBusiness = postiInBusiness;
 	}
+
 	public Volo getVolo() {
 		return volo;
 	}
@@ -96,6 +97,7 @@ public class Aereo {
 	public String toString() {
 		return "Aereo [idAereo=" + idAereo + ", compagniaAerea=" + compagniaAerea + ", postiInEconomy=" + postiInEconomy
 				+ ", postiInStandard=" + postiInStandard + ", postiInBusiness=" + postiInBusiness + "]";
-	}
+	
 
+}
 }
