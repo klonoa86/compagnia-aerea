@@ -1,0 +1,9 @@
+2019-03-78 13:05:58 ERROR2019-03-78 13:05:58 DEBUGjava.lang.Exception: exception just for purpose of providing stack trace
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.markRollbackOnly(JdbcResourceLocalTransactionCoordinatorImpl.java:314)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:187)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:39)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:271)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:104)
+	at it.begear.CompagniaAerea.dao.DAOImpl.create(DAOImpl.java:38)
+	at it.begear.CompagniaAerea.Main.Main.main(Main.java:12)
+2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 DEBUG2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 TRACE2019-03-78 13:05:58 DEBUG2019-03-78 13:05:58 TRACE
