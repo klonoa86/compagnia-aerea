@@ -12,7 +12,7 @@
 <!-- Database connection settings -->
 
 
-<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 <property name="hibernate.jdbc.time_zone">UTC</property>
 
 <property name="connection.url">jdbc:mysql://localhost:3306/compagnia_aerea?useSSL=false</property>
@@ -37,10 +37,10 @@
 <!-- Mapping delle classi -->
 
 
-<mapping class="it.begear.CompagniaAerea.model.Cliente"/>
-<mapping class="it.begear.CompagniaAerea.model.Volo"/>
-<mapping class="it.begear.CompagniaAerea.model.Prenotazione"/>
-<mapping class="it.begear.CompagniaAerea.model.Aereo"/>
+<mapping class="it.begear.CompagniaAerea.Model.Cliente"/>
+<mapping class="it.begear.CompagniaAerea.Model.Volo"/>
+<mapping class="it.begear.CompagniaAerea.Model.Prenotazione"/>
+<mapping class="it.begear.CompagniaAerea.Model.Aereo"/>
 
 </session-factory>
 
