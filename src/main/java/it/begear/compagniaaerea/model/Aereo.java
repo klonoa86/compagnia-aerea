@@ -4,54 +4,41 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "aereo")
 public class Aereo {
 
 	@Id
 	@Column(name = "id_aereo")
 	private int idAereo;
 
-	@Column(name = "data_partenza")
-	private Calendar dataPartenza;
-
-	@Column(name = "data_arrivo")
-	private Calendar dataArrivo;
-
-	@Column(name = "luogo_partenza")
-	private String luogoPartenza;
-
-	@Column(name = "luogo_arrivo")
-	private String luogoArrivo;
-
-	@Column(name = "compagnia_aerea")
+	@Column(name = "compagnia_aerea", nullable = false)
 	private String compagniaAerea;
 
-	@Column(name = "n_posti_economy")
+	@Column(name = "n_posti_economy", nullable = false)
 	private int postiInEconomy;
 
-	@Column(name = "n_posti_standard")
+	@Column(name = "n_posti_standard", nullable = true)
 	private int postiInStandard;
 
-	@Column(name = "n_posti_business")
+	@Column(name = "n_posti_business", nullable = true)
 	private int postiInBusiness;
 
 	public Aereo() {
 	}
 
-	public Aereo(int idAereo, Calendar dataPartenza, Calendar dataArrivo, String luogoPartenza, String luogoArrivo,
-			String compagniaAerea, int postiInEconomy, int postiInStandard, int postiInBusiness) {
+	public Aereo(int idAereo, String compagniaAerea, int postiInEconomy, int postiInStandard, int postiInBusiness) {
 
-		this.idAereo= idAereo;
-		this.dataPartenza= dataPartenza;
-		this.dataArrivo= dataArrivo;
-		this.luogoPartenza= luogoPartenza;
-		this.luogoArrivo= luogoArrivo;
-		this.compagniaAerea= compagniaAerea;
-		this.postiInEconomy= postiInEconomy;
-		this.postiInStandard= postiInStandard;
-		this.postiInBusiness= postiInBusiness;
-		
+		this.idAereo = idAereo;
+		this.compagniaAerea = compagniaAerea;
+		this.postiInEconomy = postiInEconomy;
+		this.postiInStandard = postiInStandard;
+		this.postiInBusiness = postiInBusiness;
+
 	}
 
 	public int getIdAereo() {
@@ -60,38 +47,6 @@ public class Aereo {
 
 	public void setIdAereo(int idAereo) {
 		this.idAereo = idAereo;
-	}
-
-	public Calendar getDataPartenza() {
-		return dataPartenza;
-	}
-
-	public void setDataPartenza(Calendar dataPartenza) {
-		this.dataPartenza = dataPartenza;
-	}
-
-	public Calendar getDataArrivo() {
-		return dataArrivo;
-	}
-
-	public void setDataArrivo(Calendar dataArrivo) {
-		this.dataArrivo = dataArrivo;
-	}
-
-	public String getLuogoPartenza() {
-		return luogoPartenza;
-	}
-
-	public void setLuogoPartenza(String luogoPartenza) {
-		this.luogoPartenza = luogoPartenza;
-	}
-
-	public String getLuogoArrivo() {
-		return luogoArrivo;
-	}
-
-	public void setLuogoArrivo(String luogoArrivo) {
-		this.luogoArrivo = luogoArrivo;
 	}
 
 	public String getCompagniaAerea() {
@@ -128,11 +83,8 @@ public class Aereo {
 
 	@Override
 	public String toString() {
-		return "Aereo [idAereo=" + idAereo + ", dataPartenza=" + dataPartenza + ", dataArrivo=" + dataArrivo
-				+ ", luogoPartenza=" + luogoPartenza + ", luogoArrivo=" + luogoArrivo + ", compagniaAerea="
-				+ compagniaAerea + ", postiInEconomy=" + postiInEconomy + ", postiInStandard=" + postiInStandard
-				+ ", postiInBusiness=" + postiInBusiness + "]";
+		return "Aereo [idAereo=" + idAereo + ", compagniaAerea=" + compagniaAerea + ", postiInEconomy=" + postiInEconomy
+				+ ", postiInStandard=" + postiInStandard + ", postiInBusiness=" + postiInBusiness + "]";
 	}
-	
-	
+
 }
