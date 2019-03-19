@@ -7,7 +7,6 @@ import it.begear.CompagniaAerea.dao.DAOImpl;
 public class Main {
 
 	public static void main(String[] args) {
-		DAO dao= DAOImpl.getInstance();
 		
 		
 		
