@@ -42,11 +42,13 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public <D> void create(D d) {
+		log.info("Sei nel metodo inserimento");
 		try (Session session = createConnection()) {
 			session.beginTransaction();
 			session.save(d);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
+			log.error("Errore!!! " ,e);
 			e.printStackTrace();
 		}
 	}
@@ -54,11 +56,13 @@ public class DAOImpl implements DAO {
 	@Override
 	public <D> D read(Class<D> classe, Serializable pk) {
 		D d = null;
+		log.info("Sei nel metodo lettura");
 		try (Session session = createConnection()) {
 			session.beginTransaction();
 			d = session.get(classe, pk);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
+			log.error("Errore!!! " ,e);
 			e.printStackTrace();
 		}
 		return d;
@@ -66,12 +70,14 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public <D> void update(D d) {
+		log.info("Sei nel metodo modifica");
 		try (Session session = createConnection()) {
 			session.beginTransaction();
 			session.update(d);
 			session.save(d);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			log.error("Errore!!! " ,e);
 			e.printStackTrace();
 		}
 
@@ -79,11 +85,13 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public <D> void delete(D d) {
+		log.info("Sei nel metodo eliminazione");
 		try (Session session = createConnection()) {
 			session.beginTransaction();
 			session.delete(d);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			log.error("Errore!!! " ,e);
 			e.printStackTrace();
 
 		}
@@ -91,6 +99,7 @@ public class DAOImpl implements DAO {
 	}
 
 	public List<Volo> stampaListaVoliMondiali() {
+		log.info("Sei nel metodo stampa");
 		try (Session sessione = createConnection()) {
 			sessione.beginTransaction();
 			Query<Volo> query = sessione.createQuery("from Volo v", Volo.class);
@@ -99,6 +108,7 @@ public class DAOImpl implements DAO {
 
 			return voli;
 		} catch (HibernateException e) {
+			log.error("Errore!!! " ,e);
 			e.printStackTrace();
 			return null;
 		}
