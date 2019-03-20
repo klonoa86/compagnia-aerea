@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+			 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN">
+
+<hibernate-configuration>
+
+
+<session-factory>
+
+<!-- Database connection settings -->
+
+
+<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="hibernate.jdbc.time_zone">UTC</property>
+
+<property name="connection.url">jdbc:mysql://localhost:3306/compagnia_aerea?useSSL=false</property>
+
+<property name="connection.username">root</property>
+
+<property name="connection.password">root</property>
+
+<!-- Collega l'istanza della sessionFactory al thread corrente -->
+<property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+<property name="hibernate.current_session_context_class">thread</property>
+
+
+<!-- JDBC Conection pool -->
+
+
+<property name="connection.pool_size">1</property>
+
+<property name="show_sql">true</property>
+
+<!-- Mapping delle classi -->
+
+
+<mapping class="it.begear.CompagniaAerea.model.Cliente"/>
+<mapping class="it.begear.CompagniaAerea.model.Volo"/>
+<mapping class="it.begear.CompagniaAerea.model.Prenotazione"/>
+<mapping class="it.begear.CompagniaAerea.model.Aereo"/>
+
+</session-factory>
+
+</hibernate-configuration>
