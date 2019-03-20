@@ -13,7 +13,7 @@ public interface DAO {
 	public <T> void update(T entity);
 	public <T> void delete(T entity);
 	public <T> T read(Class<T> entity, Serializable id);
-//	public Prenotazione aggiungiPrenotazioneVolo(Prenotazione p);
-//	public Prenotazione aggiungiPrenotazioneCliente(Prenotazione p);
 	public List<Volo> stampaListaVoliMondiali();
+	public List<Integer> stampaNumeroPrenotazioni();
+	
 }

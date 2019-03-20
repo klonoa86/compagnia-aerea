@@ -13,18 +13,13 @@ import it.begear.CompagniaAerea.dao.DAOImpl;
 public class Main {
 
 	public static void main(String[] args) {
-		DAO dao= DAOImpl.getInstance();
-		
-//Esempio d'uso
-		Cliente cliente= dao.read(Cliente.class, "mario.rossi");
-		Volo volo=dao.read(Volo.class, 5);
 
-
+		DAO dao = DAOImpl.getInstance();
 		
-//		dao.create(cliente.aggiungiVolo(volo));
-//		dao.create(volo.aggiungiCliente(cliente, "55B", "economy" ));
-	
-	
+		
+		//esempio d'uso
+//		List<Integer> lista = dao.stampaNumeroPrenotazioni();
+//		System.out.println(lista);
 	}
 
 }

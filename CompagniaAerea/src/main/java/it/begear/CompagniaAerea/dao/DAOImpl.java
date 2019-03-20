@@ -15,6 +15,7 @@ import org.hibernate.query.Query;
 import it.begear.CompagniaAerea.Model.Cliente;
 import it.begear.CompagniaAerea.Model.Prenotazione;
 import it.begear.CompagniaAerea.Model.Volo;
+import it.begear.CompagniaAerea.Util.Scan;
 
 public class DAOImpl implements DAO {
 	Logger log = Logger.getLogger("logProva");
@@ -48,7 +49,7 @@ public class DAOImpl implements DAO {
 			session.save(d);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
-			log.error("Errore!!! " ,e);
+			log.error("Errore!!! ", e);
 			e.printStackTrace();
 		}
 	}
@@ -62,7 +63,7 @@ public class DAOImpl implements DAO {
 			d = session.get(classe, pk);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
-			log.error("Errore!!! " ,e);
+			log.error("Errore!!! ", e);
 			e.printStackTrace();
 		}
 		return d;
@@ -77,7 +78,7 @@ public class DAOImpl implements DAO {
 			session.save(d);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			log.error("Errore!!! " ,e);
+			log.error("Errore!!! ", e);
 			e.printStackTrace();
 		}
 
@@ -91,11 +92,25 @@ public class DAOImpl implements DAO {
 			session.delete(d);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			log.error("Errore!!! " ,e);
+			log.error("Errore!!! ", e);
 			e.printStackTrace();
 
 		}
 
+	}
+
+	//Questo metodo ritorna una lista contenente un solo intero, l'intero va scelto dall'utente.
+	public List<Integer> stampaNumeroPrenotazioni() {
+		try (Session sessione = createConnection()) {
+			sessione.beginTransaction();
+			System.out.println("Inserisci il numero del volo di cui vuoi avere il count di quante prenotazioni ha: ");
+			String id = Scan.scannerString();
+			Query<Integer> query = sessione.createQuery("select COUNT(*) from Prenotazione prenotazione where prenotazione.volo=" + id +  "group by prenotazione.volo");
+			List<Integer> voli = query.getResultList();
+			sessione.getTransaction().commit();
+
+			return voli;
+		}
 	}
 
 	public List<Volo> stampaListaVoliMondiali() {
@@ -108,7 +123,7 @@ public class DAOImpl implements DAO {
 
 			return voli;
 		} catch (HibernateException e) {
-			log.error("Errore!!! " ,e);
+			log.error("Errore!!! ", e);
 			e.printStackTrace();
 			return null;
 		}
