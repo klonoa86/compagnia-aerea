@@ -1,5 +1,6 @@
 package it.begear.CompagniaAerea.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,13 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Volo")
 @Table(name = "volo")
 
 public class Volo {
 
 	@Id
-	@Column(name = "id_volo")
+	@Column(name = "id_volo", insertable = false, updatable = false)
 	private int idVolo;
 
 	@Column(name = "data_arrivo")
@@ -36,21 +37,18 @@ public class Volo {
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id_aereo")
+	@JoinColumn(name="id_aereo", insertable = false, updatable = false)
 	private Aereo aereo;
 	
-//	@OneToMany (mappedBy = "volo", fetch= FetchType.EAGER)
-//	private List<Prenotazione> listaPrenotazioniClienti;
 	
-//	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-//	@JoinColumn(name = "username")
-//	private Cliente cliente;
-	
+	@OneToMany (mappedBy = "volo", cascade = CascadeType.ALL)
+	private List<Prenotazione> listaPrenotazioniClienti = new ArrayList<>();
 
 	public Volo() {
 	}
 		
-	public Volo(String dataArrivo, String dataPartenza, String luogoArrivo, String luogoPartenza, Aereo aereo) {
+	public Volo(int idVolo, String dataArrivo, String dataPartenza, String luogoArrivo, String luogoPartenza, Aereo aereo) {
+		this.idVolo = idVolo;
 		this.dataArrivo = dataArrivo;
 		this.dataPartenza = dataPartenza;
 		this.luogoArrivo = luogoArrivo;
@@ -106,18 +104,27 @@ public class Volo {
 		this.aereo = aereo;
 	}
 
-//	public List<Prenotazione> getListaPrenotazioniClienti() {
-//		return listaPrenotazioniClienti;
-//	}
-//
-//	public void setListaPrenotazioniClienti(List<Prenotazione> listaPrenotazioniClienti) {
-//		this.listaPrenotazioniClienti = listaPrenotazioniClienti;
-//	}
+	public List<Prenotazione> getListaPrenotazioniClienti() {
+		return listaPrenotazioniClienti;
+	}
+
+	public void setListaPrenotazioniClienti(List<Prenotazione> listaPrenotazioniClienti) {
+		this.listaPrenotazioniClienti = listaPrenotazioniClienti;
+	}
 
 	@Override
 	public String toString() {
 		return "L'id del volo è: " + idVolo + " - Data e ora di arrivo: " + dataArrivo + " - Data e ora di partenza: " + dataPartenza
 				+ " - Luogo di partenza: " + luogoPartenza +  " - Luogo di arrivo: " + luogoArrivo;
 	}
+	
+	public Prenotazione aggiungiCliente(Cliente cliente, String postoAssegnato, String classe) {
+		Prenotazione prenotazione = new Prenotazione(cliente, this, postoAssegnato, classe);
+		listaPrenotazioniClienti.add(prenotazione);
+		cliente.getListaPrenotazioniVoli().add(prenotazione);
+		return prenotazione;
+	}
+	
+	
 
 }

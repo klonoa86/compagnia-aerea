@@ -1,44 +1,80 @@
 package it.begear.CompagniaAerea.Model;
 
+import java.util.Objects;
+
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Prenotazione")
 @Table(name = "prenotazione")
-
 public class Prenotazione {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_prenotazione")
-	private int idPrenotazione;
+	
+	@EmbeddedId
+	private PrenotazioneID prenotazioneId;
 
-	@Column(name = "posto_assegnato", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username", insertable=false, updatable=false)
+	private Cliente cliente;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_volo", insertable=false, updatable=false)
+	private Volo volo;
+
+	@Column(name = "posto_assegnato")
 	private String postoAssegnato;
 
-	@Column(name = "classe", nullable = false)
+	@Column(name = "classe")
 	private String classe;
 
 	public Prenotazione() {
 
 	}
 
-	public Prenotazione(int idPrenotazione, String postoAssegnato, String classe) {
+	public Prenotazione(Cliente cliente, Volo volo, String postoAssegnato, String classe) {
+		this.volo = volo;
+		this.cliente = cliente;
 		this.postoAssegnato = postoAssegnato;
 		this.classe = classe;
-		this.idPrenotazione = idPrenotazione;
+		this.prenotazioneId= new PrenotazioneID(volo.getIdVolo(), cliente.getUsername());
 
 	}
 
-	public int getIdPrenotazione() {
-		return idPrenotazione;
+	public PrenotazioneID getPrenotazioneId() {
+		return prenotazioneId;
 	}
 
-	public void setIdPrenotazione(int idPrenotazione) {
-		this.idPrenotazione = idPrenotazione;
+	public void setPrenotazioneId(PrenotazioneID prenotazioneId) {
+		this.prenotazioneId = prenotazioneId;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Volo getVolo() {
+		return volo;
+	}
+
+	public void setVolo(Volo volo) {
+		this.volo = volo;
 	}
 
 	public String getPostoAssegnato() {
@@ -58,9 +94,21 @@ public class Prenotazione {
 	}
 
 	@Override
-	public String toString() {
-		return "Prenotazione [idPrenotazione=" + idPrenotazione + ", postoAssegnato=" + postoAssegnato + ", classe="
-				+ classe + "]";
+	public int hashCode() {
+		return Objects.hash(cliente,volo);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		Prenotazione that = (Prenotazione) obj;
+		return Objects.equals(cliente, that.cliente) && Objects.equals(volo, that.volo);
+	}
+
+	
+	
 
 }

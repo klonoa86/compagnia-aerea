@@ -23,8 +23,9 @@
 
 <!-- Collega l'istanza della sessionFactory al thread corrente -->
 <property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-
+<property name="hibernate.hbm2ddl.auto">validate</property>
 <property name="hibernate.current_session_context_class">thread</property>
+<property name="hibernate.enable_lazy_load_no_trans">true</property>
 
 
 <!-- JDBC Conection pool -->

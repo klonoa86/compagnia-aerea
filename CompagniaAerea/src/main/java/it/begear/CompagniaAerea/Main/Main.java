@@ -1,5 +1,6 @@
 package it.begear.CompagniaAerea.Main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.begear.CompagniaAerea.Model.Aereo;
@@ -14,11 +15,16 @@ public class Main {
 	public static void main(String[] args) {
 		DAO dao= DAOImpl.getInstance();
 		
-		List<Volo> lista = dao.stampaListaVoliMondiali();
-		for (Volo volo : lista) {
-			System.out.println(volo);
-		}
+//Esempio d'uso
+		Cliente cliente= dao.read(Cliente.class, "mario.rossi");
+		Volo volo=dao.read(Volo.class, 5);
+
+
 		
+//		dao.create(cliente.aggiungiVolo(volo));
+//		dao.create(volo.aggiungiCliente(cliente, "55B", "economy" ));
+	
+	
 	}
 
 }

@@ -20,13 +20,13 @@ public class Aereo {
 	private String compagniaAerea;
 
 	@Column(name = "n_posti_economy", nullable = false)
-	private int postiInEconomy;
+	private int postiInEconomy = 0;
 
 	@Column(name = "n_posti_standard", nullable = true)
-	private int postiInStandard;
+	private int postiInStandard = 0;
 
 	@Column(name = "n_posti_business", nullable = true)
-	private int postiInBusiness;
+	private int postiInBusiness = 0;
 
 	@OneToOne(mappedBy = "aereo", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
