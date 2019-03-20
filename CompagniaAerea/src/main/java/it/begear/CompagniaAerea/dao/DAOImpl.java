@@ -3,6 +3,7 @@ package it.begear.CompagniaAerea.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,6 +17,7 @@ import it.begear.CompagniaAerea.Model.Prenotazione;
 import it.begear.CompagniaAerea.Model.Volo;
 
 public class DAOImpl implements DAO {
+	Logger log = Logger.getLogger("logProva");
 
 	private SessionFactory sessionFactory = null;
 
