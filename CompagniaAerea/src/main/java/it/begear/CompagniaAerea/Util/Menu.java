@@ -1,38 +1,99 @@
 package it.begear.CompagniaAerea.Util;
 
-import java.util.Scanner;
+import it.begear.CompagniaAerea.Model.Aereo;
+import it.begear.CompagniaAerea.Model.Cliente;
+import it.begear.CompagniaAerea.Model.Prenotazione;
+import it.begear.CompagniaAerea.Model.Volo;
+import it.begear.CompagniaAerea.dao.DAO;
+import it.begear.CompagniaAerea.dao.DAOImpl;
 
 public class Menu {
 
-	public static void entraEsci() {
+	public static DAO mioDao = DAOImpl.getInstance();
+	// public static Aereo aereo = new Aereo("ab1234", "airfrance", 23, 40, 0);
+	// public static Volo mioVolo = new Volo(123,"22/03/2019",
+	// "22/03/2019","Barcellona", "Roma", aereo );
+	// public static Cliente mioCliente = new Cliente("Pippo",
+	// "Baudo","abcde44","pippobaudo");
+	// public static Prenotazione miaPrenotazione = new Prenotazione(mioCliente,
+	// mioVolo, "2C", "Economy");
+
+	public static void crudPrenotazione() {
 		int n;
-		int a;
-		System.out.println("1. compra biglietto");
-		System.out.println("2. esci");
-		System.out.println("3. verifica lo stato di un volo");
-		System.out.println("4. prenotazioni effettuate");
-		System.out.println("5. modifica prenotazione");
-		System.out.println("6. cancella prenotazione");
+		System.out.println("0. Visualizza voli");
+		System.out.println("1. crea una prenotazione");
+		System.out.println("2. modifica prenotazione");
+		System.out.println("3. prenotazioni effettuate");
+		System.out.println("4. cancella prenotazione");
+		System.out.println("5. esci");
 
 		n = Scan.scannerInteri();
 		switch (n) {
+		
+		case 0:
+			
+		
 		case 1:
-			// esempio
-			System.out.println("");
+			System.out.println("dimmi i dati del cliente");
+
+			String nome = Scan.scannerString();
+			String cognome = Scan.scannerString();
+			String cf = Scan.scannerString();
+			String username = Scan.scannerString();
+			Cliente cliente = new Cliente(nome, cognome, cf, username);
+			mioDao.create(cliente);
+			cliente.prenota();
+			System.out.println("Hai creato una Prenotazione");
 			break;
 
 		case 2:
-			// esempio
-			System.out.println("");
+
+			System.out.println("dammi l'id  del volo della prenotazione da modificare");
+			int k = Scan.scannerInteri();
+			System.out.println("dammi l'username del cliente che ha prenotato");
+			String j = Scan.scannerString();
+			Prenotazione prenotazione = mioDao.read(Prenotazione.class, k);
+			String nuovoPosto = Scan.scannerString();
+			String nuovaClasse = Scan.scannerString();
+			prenotazione.setPostoAssegnato(nuovoPosto);
+			prenotazione.setClasse(nuovaClasse);
+			mioDao.update(prenotazione);
 			break;
 
 		case 3:
-			controlloVolo();
+			
+			System.out.println("dammi l'id del volo della prenotazione da leggere");
+			int i = Scan.scannerInteri();
+			System.out.println("dammi l'username del cliente che ha prenotato");
+			String h = Scan.scannerString();
+			System.out.println(mioDao.read(Prenotazione.class, h));
+			break;
+			
 		case 4:
 			// esempio
+			System.out.println("dammi l'id del volo della prenotazione da cancellare");
+			int g = Scan.scannerInteri();
+			Prenotazione prenotazione2 = mioDao.read(Prenotazione.class, g);
+			mioDao.delete(prenotazione2);
+			break;
+			
+		case 5:
+			esci();
+			break;
+			
+		default:
+			System.out.println("valore errato");
+			crudPrenotazione();
+			break;
 		}
+		crudPrenotazione();
 	}
 
+	
+	public static void esci() {
+		System.out.println("Arrivederci");
+		System.exit(0);
+	}
 	public static void controlloVolo() {
 		int a;
 		System.out.println("1. posti in business");
@@ -108,9 +169,15 @@ public class Menu {
 
 		case 2:
 			// prova
- 
+
 			break;
 
 		}
 	}
+
+	// public void creaPrenotazione() {
+	//
+	// Volo volo = new Volo()
+	// Prenotazione aggiungiVolo ()
+	// }
 }

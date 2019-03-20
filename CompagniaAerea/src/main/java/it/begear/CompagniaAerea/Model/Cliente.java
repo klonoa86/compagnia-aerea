@@ -12,6 +12,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import it.begear.CompagniaAerea.Util.Scan;
+import it.begear.CompagniaAerea.dao.DAO;
+import it.begear.CompagniaAerea.dao.DAOImpl;
+
 @Entity(name = "Cliente")
 @Table(name = "cliente")
 public class Cliente {
@@ -88,11 +92,22 @@ public class Cliente {
 		return "Cliente [nome=" + nome + ", cognome=" + cognome + ", cf=" + cf + ", username=" + username + "]";
 	}
 	
+	public void prenota() {
+		System.out.println("seleziona l'id del volo che vuoi prenotare");
+		int id = Scan.scannerInteri();
+		Volo volo = DAOImpl.getInstance().read(Volo.class, id);
+		System.out.println("Scegli il posto");
+		String postoAssegnato= Scan.scannerString();
+		System.out.println("scegli la classe");
+		String classe = Scan.scannerString();
+		DAOImpl.getInstance().create(aggiungiVolo(volo, postoAssegnato, classe));
+	}
+	
 	public  Prenotazione aggiungiVolo (Volo volo, String postoAssegnato, String classe) {
+		
 		Prenotazione prenotazione = new Prenotazione(this, volo, postoAssegnato, classe);
 		listaPrenotazioniVoli.add(prenotazione);
 		volo.getListaPrenotazioniClienti().add(prenotazione);
-		
 		return prenotazione;
 	}
 

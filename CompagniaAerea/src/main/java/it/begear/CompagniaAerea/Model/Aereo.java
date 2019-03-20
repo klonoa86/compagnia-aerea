@@ -25,6 +25,7 @@ public class Aereo {
 	@Column(name = "n_posti_standard", nullable = true)
 	private int postiInStandard = 0;
 
+	
 	@Column(name = "n_posti_business", nullable = true)
 	private int postiInBusiness = 0;
 
