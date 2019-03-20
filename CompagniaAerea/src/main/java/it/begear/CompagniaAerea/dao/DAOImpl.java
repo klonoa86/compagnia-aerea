@@ -3,6 +3,7 @@ package it.begear.CompagniaAerea.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,6 +17,7 @@ import it.begear.CompagniaAerea.Model.Prenotazione;
 import it.begear.CompagniaAerea.Model.Volo;
 
 public class DAOImpl implements DAO {
+	Logger log = Logger.getLogger("logProva");
 
  private SessionFactory sessionFactory = null;
 
@@ -40,36 +42,47 @@ public class DAOImpl implements DAO {
 
  @Override
  public <D> void create(D d) {
+	 log.info("Sei nel metodo d'inserimento");
   try (Session session = createConnection()) {
    session.beginTransaction();
    session.save(d);
    session.getTransaction().commit();
+   log.info("Hai inserito un nuovo oggetto");
   } catch (HibernateException e) {
-   e.printStackTrace();
+	 log.warn("Errore!!! ",e);
+	  e.printStackTrace();
   }
  }
 
  @Override
  public <D> D read(Class<D> classe, Serializable pk) {
   D d = null;
+  log.info("Sei nel metodo di lettura");
   try (Session session = createConnection()) {
    session.beginTransaction();
    d = session.get(classe, pk);
    session.getTransaction().commit();
+   log.info("Hai appena letto un oggetto");
   } catch (HibernateException e) {
-   e.printStackTrace();
+	  log.warn("Errore!!! ", e);
+	  e.printStackTrace();
+	  
+
   }
   return d;
  }
 
  @Override
  public <D> void update(D d) {
+	 log.info("Sei nel metodo di modifica");
   try (Session session = createConnection()) {
    session.beginTransaction();
    session.update(d);
    session.save(d);
    session.getTransaction().commit();
+   log.info("Hai appena modificato un oggetto");
   } catch (Exception e) {
+	  log.warn("Errore!!! ",e);
    e.printStackTrace();
   }
 
@@ -77,11 +90,14 @@ public class DAOImpl implements DAO {
 
  @Override
  public <D> void delete(D d) {
+	 log.info("Sei nel metodo eliminazione");
   try (Session session = createConnection()) {
    session.beginTransaction();
    session.delete(d);
    session.getTransaction().commit();
+   log.info("Hai appena eliminato un oggetto");
   } catch (Exception e) {
+	  log.warn("Errore!!! ",e);
    e.printStackTrace();
 
   }
