@@ -81,6 +81,7 @@ public class DAOImpl implements DAO {
 			log.error("Errore!!! ", e);
 			e.printStackTrace();
 		}
+		System.out.println("Operazione riuscita");
 
 	}
 
@@ -97,6 +98,7 @@ public class DAOImpl implements DAO {
 
 		}
 
+		System.out.println("Operazione riuscita");
 	}
 
 	//Questo metodo ritorna una lista contenente un solo intero, l'intero va scelto dall'utente.

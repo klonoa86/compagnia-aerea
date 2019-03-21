@@ -21,33 +21,44 @@ public class Menu {
 	public static void crudPrenotazione() {
 		int n;
 		System.out.println("0. Visualizza voli");
-		System.out.println("1. crea una prenotazione");
-		System.out.println("2. modifica prenotazione");
-		System.out.println("3. prenotazioni effettuate");
-		System.out.println("4. cancella prenotazione");
-		System.out.println("5. esci");
+		System.out.println("1. crea una prenotazione - CLIENTE ESISTENTE");
+		System.out.println("2. crea una prenotazione - NUOVO CLIENTE");
+		System.out.println("3. modifica prenotazione");
+		System.out.println("4. prenotazioni effettuate");
+		System.out.println("5. cancella prenotazione");
+		System.out.println("6. esci");
 
 		n = Scan.scannerInteri();
 		switch (n) {
 		
 		case 0:
 			
-		
 		case 1:
-			System.out.println("dimmi i dati del cliente");
-
-			String nome = Scan.scannerString();
-			String cognome = Scan.scannerString();
-			String cf = Scan.scannerString();
-			String username = Scan.scannerString();
-			Cliente cliente = new Cliente(nome, cognome, cf, username);
-			mioDao.create(cliente);
+			System.out.println("Dimmi l'username del cliente che desidera prenotare il volo:");
+			String user = Scan.scannerString();
+			Cliente cliente = mioDao.read(Cliente.class, user);
 			cliente.prenota();
-			System.out.println("Hai creato una Prenotazione");
+			System.out.println("Hai prenotato il tuo volo.");
+			
+			break;
+			
+		case 2:
+			System.out.println("Dati del nuovo Cliente:");
+			System.out.println("Nome:");
+			String nome = Scan.scannerString();
+			System.out.println("Cognome:");
+			String cognome = Scan.scannerString();
+			System.out.println("CF:");
+			String cf = Scan.scannerString();
+			System.out.println("Username:");
+			String username = Scan.scannerString();
+			Cliente clientenuovo = new Cliente(nome, cognome, cf, username);
+			mioDao.create(clientenuovo);
+			clientenuovo.prenota();
+			System.out.println("Hai prenotato il tuo volo.");
 			break;
 
-		case 2:
-
+		case 3:
 			System.out.println("dammi l'id  del volo della prenotazione da modificare");
 			int k = Scan.scannerInteri();
 			System.out.println("dammi l'username del cliente che ha prenotato");
@@ -60,16 +71,16 @@ public class Menu {
 			mioDao.update(prenotazione);
 			break;
 
-		case 3:
+		case 4:
 			
 			System.out.println("dammi l'id del volo della prenotazione da leggere");
 			int i = Scan.scannerInteri();
 			System.out.println("dammi l'username del cliente che ha prenotato");
 			String h = Scan.scannerString();
-			System.out.println(mioDao.read(Prenotazione.class, h));
+			System.out.println("La tua prenotazione:" + mioDao.read(Prenotazione.class, h));
 			break;
 			
-		case 4:
+		case 5:
 			// esempio
 			System.out.println("dammi l'id del volo della prenotazione da cancellare");
 			int g = Scan.scannerInteri();
@@ -77,7 +88,7 @@ public class Menu {
 			mioDao.delete(prenotazione2);
 			break;
 			
-		case 5:
+		case 6:
 			esci();
 			break;
 			
