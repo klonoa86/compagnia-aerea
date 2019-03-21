@@ -17,7 +17,7 @@ esso permetterà  di eseguire diverse operazioni quali:
   	1. crea una prenotazione - CLIENTE ESISTENTE
     2. crea una prenotazione - NUOVO CLIENTE
   	3. modifica prenotazione
-		4. prenotazioni effettuate
+	4. prenotazioni effettuate
     5. cancella prenotazione
   	6. esci
 
